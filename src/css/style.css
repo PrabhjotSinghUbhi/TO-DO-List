@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins';
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-image: url('/src/img/background2.jpg');
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    display: flex;
+    width: 450px;
+    height: 300px;
+    background-color: #fff;
+    margin-top: 10em;
+    border-radius: 10px;
+    flex-direction: column;
+    /* align-items: center; */
+}
+
+.txt {
+    display: flex;
+    font-weight: bolder;
+    padding: 20px;
+    font-size: 1.5em;
+    color: rgb(3, 3, 105);
+}
+
+#icon {
+    margin: 6px 0 0 3px;
+    width: 0.9em;
+    height: 0.9em;
+    background-image: url('/src/img/check-list.png');
+    background-size: cover;
+}
+
+.input-task {
+    display: flex;
+    border: 2px solid;
+    border-radius: 25px;
+    width: 25em;
+    align-items: center;
+    justify-content: center;
+}
+
+.temp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#task {
+    display: flex;
+    height: 2.5rem;
+    background-color: none;
+    border: none;
+    flex-grow: 1;
+    /* width: 20em; */
+    border-radius: 20px;
+    padding: 0 10px 0 2em;
+}
+
+#task:focus {
+    outline: none;
+}
+
+#Add {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    height: 3.1em;
+    width: 7em;
+    border: none;
+    font-weight: bold;
+    background-color: #333;
+    color: #fff;
+}
+
+.yourTask {
+    display: flex;
+    flex-direction: column;
+    /* border: 2px solid #333; */
+    font-size: large;
+    margin: 25px 0 0 35px;
+}
+
+#mm {
+    margin: 5px;
+    width: 25px;
+    height: 15px;
+}
+
+.tt {
+    display: flex;
+    padding: 3px;
+}
