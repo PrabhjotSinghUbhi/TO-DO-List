@@ -12,6 +12,7 @@
 body {
     width: 100vw;
     height: 100vh;
+    background-color: #333;
     background-image: url('/src/img/background2.jpg');
     background-size: cover;
     display: flex;
@@ -97,13 +98,13 @@ body {
     margin: 25px 0 0 35px;
 }
 
-#mm {
-    margin: 5px;
+#todo1 {
+    /* margin: 5px 0 0 0 ; */
     width: 25px;
     height: 15px;
 }
 
 .tt {
     display: flex;
-    padding: 3px;
+    /* padding: 3px; */
 }
