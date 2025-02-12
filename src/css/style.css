@@ -19,7 +19,7 @@ body {
     justify-content: center;
 }
 
-.container {
+.main-container {
     display: flex;
     width: 450px;
     height: 300px;
@@ -27,10 +27,9 @@ body {
     margin-top: 10em;
     border-radius: 10px;
     flex-direction: column;
-    /* align-items: center; */
 }
 
-.txt {
+.heading-container {
     display: flex;
     font-weight: bolder;
     padding: 20px;
@@ -55,7 +54,7 @@ body {
     justify-content: center;
 }
 
-.temp {
+.input-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -91,16 +90,14 @@ body {
     color: #fff;
 }
 
-.yourTask {
+.todo-container {
     display: flex;
     flex-direction: column;
-    /* border: 2px solid #333; */
     font-size: large;
     margin: 25px 0 0 35px;
 }
 
-.todo1 {
-    /* margin: 5px 0 0 0 ; */
+#checkbox {
     width: 25px;
     height: 15px;
     cursor: pointer;
@@ -112,13 +109,19 @@ body {
     flex-grow: 1;
     cursor: pointer;
     margin-right: 50px;
+    /* border: solid; */
 }
 
-.tt {
+.main-align {
     display: flex;
     align-items: center;
 }
 
-.check {
+.checkbox-container {
     display: flex;
+}
+
+#remove-img {
+    width: 16px;
+    height: 20px;
 }

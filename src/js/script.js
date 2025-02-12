@@ -1,106 +1,72 @@
-// Ensuring that all dom element are loaded before the script runs.
 document.addEventListener('DOMContentLoaded', function () {
-    // We need to make sure that we are selecting every checkbox in the dom.
-    document.querySelectorAll('.checkbox-container input').forEach((checkbox) => {
-        //Listen for a "change" event → Detects when the user checks/unchecks the box.
-        checkbox.addEventListener('change', function () {
-            // Find the corresponding task text (#todos) inside the .main-align div
-            let taskTest = this.closest(".main-align").querySelector("#todos");
+    //selecting add button.
+    const addBtn = document.querySelector('#add');
+    const todo_container = document.querySelector('.todo-container');
+    const inputTask = document.querySelector('#task');
 
-            // closest function finds the closed  path to parent main-align and then querySelector("#todos") selects the span with id=todo.
-
-            // this refers to the checkbox that was clicked.
-            if (this.checked) {
-                taskTest.style.textDecoration = "line-through";
-                taskTest.style.color = "#D8BFD8";
-            } else {
-                taskTest.style.textDecoration = "none";
-                taskTest.style.color = "#000";
-            }
-        });
-    })
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-    const addButton = document.getElementById("Add"); // Add button
-    const taskInput = document.getElementById("task"); // Input field
-    const todoContainer = document.querySelector(".todo-container"); // Task list container
-
-    // Function to add a task
     function addTask() {
-        let taskText = taskInput.value.trim(); // Get input value and remove extra spaces
+        const task = inputTask.value.trim();
 
-        if (taskText === "") {
-            alert("Please enter a task!"); // Prevent empty tasks
+        // Check for empty values.
+        if (task = "") {
+            alert(`Please enter a task`);
             return;
         }
 
-        // Create a new task element
-        let taskItem = document.createElement("div");
-        taskItem.classList.add("main-align");
+        // Creating a new element.
+        let taskItem = document.createElement('div');
+        taskItem.classList.add('main-align');
 
-        // Create checkbox
-        let checkboxContainer = document.createElement("div");
-        checkboxContainer.classList.add("checkbox-container");
+        //Creating a container for checkBox.
+        let checkboxContainer = document.createElement('div')
+        checkboxContainer.classList.add('checkbox-container')
 
-        let checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        checkbox.addEventListener("change", function () {
+        let checkBox = document.createElement('input')
+        checkBox.type = "checkbox";
+        checkBox.addEventListener('change', function () {
             let taskSpan = taskItem.querySelector("span");
-            if (this.checked) {
-                taskSpan.style.textDecoration = "line-through";
-                taskSpan.style.color = "gray";
+            if (checkBox.checked) {
+                taskSpan.style.color = "gray"
+                taskSpan.style.textDecoration = "line-through"
             } else {
-                taskSpan.style.textDecoration = "none";
-                taskSpan.style.color = "black";
+                taskSpan.style.color = "#000"
+                taskSpan.style.textDecoration = "none"
             }
-        });
+        })
 
-        checkboxContainer.appendChild(checkbox);
+        checkboxContainer.appendChild(checkBox);
 
-        // Create task text
-        let todoTxtContainer = document.createElement("div");
-        todoTxtContainer.classList.add("todo-txt-container");
+        //Create task text.
+        let taskTxtContainer = document.createElement('div')
+        taskTxtContainer.classList.add('todo-txt-container')
 
-        let taskSpan = document.createElement("span");
-        taskSpan.textContent = taskText;
+        let taskSpan = document.createElement('span')
+        taskSpan.textContent = task;
 
-        todoTxtContainer.appendChild(taskSpan);
+        taskTxtContainer.appendChild(taskSpan);
 
-        // Create remove button
-        let removeBtn = document.createElement("div");
-        removeBtn.classList.add("remove-btn");
+        //remove btn
+        let removeBtn = document.createElement('div')
+        removeBtn.classList.add('remove-btn')
 
-        let removeImg = document.createElement("img");
-        removeImg.src = "https://prabhjotsinghubhi.github.io/TO-DO-List/src/img/xmark-solid.svg";
-        removeImg.id = "remove-img";
+        let removeImg = document.createElement('img')
+        removeImg.src = 'src/img/xmark-solid.svg'
+        removeImg.id = 'remove-img'
 
         removeBtn.appendChild(removeImg);
 
-        // Remove task on clicking the cross button
-        removeBtn.addEventListener("click", function () {
-            taskItem.remove();
+        removeBtn.addEventListener('click', function () {
+            taskItem.remove()
         });
 
-        // Append elements to the task item
-        taskItem.appendChild(checkboxContainer);
-        taskItem.appendChild(todoTxtContainer);
-        taskItem.appendChild(removeBtn);
+        taskItem.appendChild(taskTxtContainer)
+        taskItem.appendChild(checkboxContainer)
+        taskItem.appendChild(removeBtn)
 
-        // Add task to the container
-        todoContainer.appendChild(taskItem);
+        todo_container.appendChild(taskItem)
 
-        // Clear input field
-        taskInput.value = "";
+        task.value = '';
     }
 
-    // Listen for the "Add" button click
-    addButton.addEventListener("click", addTask);
-
-    // Allow adding task by pressing "Enter"
-    taskInput.addEventListener("keypress", function (event) {
-        if (event.key === "Enter") {
-            addTask();
-        }
-    });
-});
+    addBtn.addEventListener('click', addTask)
+})
