@@ -1,59 +1,106 @@
-const input_task = document.getElementById('task');
+// Ensuring that all dom element are loaded before the script runs.
+document.addEventListener('DOMContentLoaded', function () {
+    // We need to make sure that we are selecting every checkbox in the dom.
+    document.querySelectorAll('.checkbox-container input').forEach((checkbox) => {
+        //Listen for a "change" event → Detects when the user checks/unchecks the box.
+        checkbox.addEventListener('change', function () {
+            // Find the corresponding task text (#todos) inside the .main-align div
+            let taskTest = this.closest(".main-align").querySelector("#todos");
 
-// Function to create the crossed-out effect on tasks.
-const check_checkBox = (checkbox, todo) => {
-    if (checkbox.checked) {
-        todo.style.color = "gray";
-        todo.style.textDecoration = "line-through";
-    } else {
-        todo.style.color = '#000';
-        todo.style.textDecoration = "none";
-    }
-}
+            // closest function finds the closed  path to parent main-align and then querySelector("#todos") selects the span with id=todo.
 
-// Add tasks to the list.
-const divToAdd = document.querySelector('.yourTask');
-
-const addTasks = () => {
-    if (input_task.value !== '') {
-        let textToAdd = `
-            <div class="tt">
-                <div class="check">
-                    <input type="checkbox" name="Task1" class="todo1">
-                </div>
-                <div class="label" id="labelfor">
-                    <label for="todo1"><span class="todos">${input_task.value}</span></label>
-                </div>
-                <div class="remove-btn">
-                    <img src="src/img/xmark-solid.svg" alt="jf" width="16px" height="16px">
-                </div>
-            </div>
-        `;
-        divToAdd.innerHTML += textToAdd;
-        input_task.value = ''; // Clear the input field after adding the task
-    }
-};
-
-// Event delegation for handling task removal and checkbox change
-divToAdd.addEventListener('click', (event) => {
-    // Handle checkbox click for toggling the strike-through effect
-    if (event.target && event.target.classList.contains('todo1')) {
-        const checkbox = event.target;
-        const todo = checkbox.closest('.tt').querySelector('.todos');
-        check_checkBox(checkbox, todo);
-    }
-
-    // Handle remove button click for removing the task
-    if (event.target && event.target.closest('.remove-btn')) {
-        const taskItem = event.target.closest('.tt');
-        taskItem.remove(); // Remove the task item from the list
-    }
+            // this refers to the checkbox that was clicked.
+            if (this.checked) {
+                taskTest.style.textDecoration = "line-through";
+                taskTest.style.color = "#D8BFD8";
+            } else {
+                taskTest.style.textDecoration = "none";
+                taskTest.style.color = "#000";
+            }
+        });
+    })
 });
 
-// Handle adding the task when clicking the 'Add' button
-const addBTn = document.getElementById('Add');
+document.addEventListener("DOMContentLoaded", function () {
+    const addButton = document.getElementById("Add"); // Add button
+    const taskInput = document.getElementById("task"); // Input field
+    const todoContainer = document.querySelector(".todo-container"); // Task list container
 
-addBTn.addEventListener('click', addTasks);
+    // Function to add a task
+    function addTask() {
+        let taskText = taskInput.value.trim(); // Get input value and remove extra spaces
 
-// Save data to localStorage.
-localStorage.setItem('content', 'This is my saved content');
+        if (taskText === "") {
+            alert("Please enter a task!"); // Prevent empty tasks
+            return;
+        }
+
+        // Create a new task element
+        let taskItem = document.createElement("div");
+        taskItem.classList.add("main-align");
+
+        // Create checkbox
+        let checkboxContainer = document.createElement("div");
+        checkboxContainer.classList.add("checkbox-container");
+
+        let checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.addEventListener("change", function () {
+            let taskSpan = taskItem.querySelector("span");
+            if (this.checked) {
+                taskSpan.style.textDecoration = "line-through";
+                taskSpan.style.color = "gray";
+            } else {
+                taskSpan.style.textDecoration = "none";
+                taskSpan.style.color = "black";
+            }
+        });
+
+        checkboxContainer.appendChild(checkbox);
+
+        // Create task text
+        let todoTxtContainer = document.createElement("div");
+        todoTxtContainer.classList.add("todo-txt-container");
+
+        let taskSpan = document.createElement("span");
+        taskSpan.textContent = taskText;
+
+        todoTxtContainer.appendChild(taskSpan);
+
+        // Create remove button
+        let removeBtn = document.createElement("div");
+        removeBtn.classList.add("remove-btn");
+
+        let removeImg = document.createElement("img");
+        removeImg.src = "https://prabhjotsinghubhi.github.io/TO-DO-List/src/img/xmark-solid.svg";
+        removeImg.id = "remove-img";
+
+        removeBtn.appendChild(removeImg);
+
+        // Remove task on clicking the cross button
+        removeBtn.addEventListener("click", function () {
+            taskItem.remove();
+        });
+
+        // Append elements to the task item
+        taskItem.appendChild(checkboxContainer);
+        taskItem.appendChild(todoTxtContainer);
+        taskItem.appendChild(removeBtn);
+
+        // Add task to the container
+        todoContainer.appendChild(taskItem);
+
+        // Clear input field
+        taskInput.value = "";
+    }
+
+    // Listen for the "Add" button click
+    addButton.addEventListener("click", addTask);
+
+    // Allow adding task by pressing "Enter"
+    taskInput.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+            addTask();
+        }
+    });
+});
