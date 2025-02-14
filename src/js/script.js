@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     //selecting add button.
-    const addBtn = document.querySelector('#add');
+    const addBtn = document.querySelector('#Add');
     const todo_container = document.querySelector('.todo-container');
     const inputTask = document.querySelector('#task');
 
@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const task = inputTask.value.trim();
 
         // Check for empty values.
-        if (task = "") {
+        if (task == '') {
             alert(`Please enter a task`);
             return;
         }
@@ -23,7 +23,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
         let checkBox = document.createElement('input')
         checkBox.type = "checkbox";
-        checkBox.addEventListener('change', function () {
+        checkBox.id = "checkbox";
+        checkBox.classList.add('checkboxes')
+        // Using change event listener 
+        checkBox.addEventListener('click', function () {
             let taskSpan = taskItem.querySelector("span");
             if (checkBox.checked) {
                 taskSpan.style.color = "gray"
@@ -59,14 +62,19 @@ document.addEventListener('DOMContentLoaded', function () {
             taskItem.remove()
         });
 
-        taskItem.appendChild(taskTxtContainer)
         taskItem.appendChild(checkboxContainer)
+        taskItem.appendChild(taskTxtContainer)
         taskItem.appendChild(removeBtn)
 
         todo_container.appendChild(taskItem)
 
-        task.value = '';
+        inputTask.value = '';
     }
 
     addBtn.addEventListener('click', addTask)
+    inputTask.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+            addTask();
+        }
+    })
 })

@@ -97,7 +97,7 @@ body {
     margin: 25px 0 0 35px;
 }
 
-#checkbox {
+.checkboxes {
     width: 25px;
     height: 15px;
     cursor: pointer;
