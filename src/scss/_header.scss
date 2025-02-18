@@ -2,19 +2,21 @@ body {
     display: flex;
     flex-direction: column;
     .main-container {
+        @include respondTo($desktop) {
+            margin-top: px-to-rem(100px);
+        }
         display: flex;
         flex-flow: column;
         background-color: #eee;
-
+        flex-wrap: wrap;
+        
         .heading-container {
             position: sticky;
             top: 0;
             margin-bottom: 1 rem;
-            padding: 0.75rem;
-            // border: 2px solid red;
+            margin: 1rem;
             display: flex;
             align-items: center;
-            // justify-content: center;
 
             .heading-text {
                 display: flex;
@@ -48,15 +50,14 @@ body {
                 input {
                     min-height: px-to-rem(48px);
                     border: none;
-                    // border: 2px solid yellow;
                     border-radius: 35px;
-                    // flex-grow: 1;
+                    flex-grow: 1;
                     width: 65%;
                     align-items: center;
                     padding-left: 15px;
                     // background-color: $btn-bg;
                     font-size: 14px;
-                    color: #fff;
+                    // color: #fff;
                 }
 
                 input:focus {
@@ -65,7 +66,6 @@ body {
             }
 
             #Add {
-                // border: 2px solid firebrick;
                 background-color: #333;
                 border-radius: 35px;
                 width: 36%;

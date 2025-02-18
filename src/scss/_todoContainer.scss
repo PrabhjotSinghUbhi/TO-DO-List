@@ -1,8 +1,8 @@
 .todo-container {
-    border: 2px solid sandybrown;
+    margin-top: 15px;
     display: flex;
     flex-flow: column;
-    min-height: 60vh;
+    min-height: 40vh;
     border-radius: 25px;
 
     .main-align {
@@ -19,12 +19,17 @@
 
         .todo-txt-container {
             margin-left: 5px;
+            text-overflow: clip;
+
+            span {
+                font-size: 1.25em;
+            }
         }
 
         // Remove button can be attached to this using the margin-left : auto;
         .remove-btn {
-            height: 1rem;
-            width: 1rem;
+            min-height: 1rem;
+            min-width: 1rem;
             cursor: pointer;
             align-self: center;
             margin: 5px;
@@ -33,6 +38,7 @@
             align-items: center;
             justify-content: center;
         }
+
         input {
             height: 20px;
             width: 20px;
