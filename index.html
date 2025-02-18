@@ -10,9 +10,10 @@
 </head>
 
 <body>
+
     <div class="main-container" tabindex="0">
         <div class="heading-container" tabindex="0">
-            <span tabindex="0">TO-DO List </span>
+            <div tabindex="0" class="heading-text">TO-DO List </div>
             <div id="icon" tabindex="0"></div>
         </div>
         <div class="input-container" tabindex="0">
@@ -25,6 +26,17 @@
         </div>
         <div class="todo-container" tabindex="0">
             <!-- TODO's will be added here. -->
+            <div class="main-align">
+                <div class="checkbox-container">
+                    <input type="checkbox" id="checkbox" class="checkboxes">
+                </div>
+                <div class="todo-txt-container">
+                    <span>Complete your todo list project</span>
+                </div>
+                <div class="remove-btn">
+                    <img src="src/img/xmark-solid.svg" id="remove-img">
+                </div>
+            </div>
         </div>
         <!-- <script src="https://prabhjotsinghubhi.github.io/TO-DO-List/src/js/script.js"></script> -->
         <script src="src/js/script.js"></script>

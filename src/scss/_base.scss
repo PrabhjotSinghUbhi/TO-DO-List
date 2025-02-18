@@ -29,7 +29,7 @@ body {
     width: 100%;
     min-height: 100%;
     // This is the tablet size --> 768px.
-    @include mq(768px){
+    @include mq(768px) {
         font-size: 22px;
     }
 }
@@ -37,7 +37,7 @@ body {
 body {
     padding: 20px;
     background-color: $primary-bg;
-    background-image: url('../../src/img/background2.jpg');
+    // background-image: url("../../src/img/background2.jpg");
     background-size: cover;
 }
 
