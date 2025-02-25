@@ -1,6 +1,14 @@
 body {
-    display: flex;
-    flex-direction: column;
+    @include respondTo($desktop){
+        display: flex;
+        flex-direction: column;
+    }
+    @include respondTo($mobile){
+            display: grid;
+            place-items: center;
+            height: 100vh;
+    }
+
     .main-container {
         @include respondTo($desktop) {
             margin-top: px-to-rem(100px);
@@ -9,7 +17,7 @@ body {
         flex-flow: column;
         background-color: #eee;
         flex-wrap: wrap;
-        
+
         .heading-container {
             position: sticky;
             top: 0;
@@ -68,7 +76,8 @@ body {
             #Add {
                 background-color: #333;
                 border-radius: 35px;
-                width: 36%;
+                // width: 36%;
+                min-width: 120px;
                 color: #fff;
                 font-size: large;
                 font-weight: bold;
