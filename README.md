@@ -2,8 +2,6 @@
 
 Managing tasks can sometimes feel overwhelming, but having a simple and efficient to-do list can bring clarity to your day. This project is a small yet powerful step toward organizing daily tasks seamlessly. 🚀  
 
-![Project Preview](./images/todo-app-preview.png)  
-
 ---  
 
 ## 🤠 Technologies I Learned & Used  
@@ -32,17 +30,11 @@ I used high-quality free resources to enhance the UI:
 - Pexels  
 - Pixabay  
 - Freepik  
-- Reshot  
-- Kaboompics  
-- Canva  
-- Flickr  
-- StockSnap  
 
 ---
 
 ## 💡 Reflections  
 
-Creating this to-do list wasn’t just about writing code—it was about **solving a problem.** I learned that **simple projects can teach powerful lessons**, especially when integrating **SCSS** for cleaner styling and **npm** for better project management. This experience made me more confident in structuring front-end projects efficiently.  
+Throughout this journey, I have learned a great deal from **Dave Gray**, whose tutorials made complex concepts feel simple and approachable. His teaching style is incredible, and I’m truly grateful for the knowledge he shares with the developer community. 🙌  
 
 This is just the beginning! More features and improvements to come. 😊💙  
-
