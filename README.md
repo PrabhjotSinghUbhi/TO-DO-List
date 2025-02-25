@@ -3,6 +3,8 @@
 Managing tasks can sometimes feel overwhelming, but having a simple and efficient to-do list can bring clarity to your day. This project is a small yet powerful step toward organizing daily tasks seamlessly. 🚀  
 
 ---  
+## 🔥Project Preview.
+![project-preview](src/img/preview.jpg)
 
 ## 🤠 Technologies I Learned & Used  
 
