@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="dist/css/style.min.css">
     <link rel="icon" href="src/img/check-list.png" type="image/svg+xml">
-    <title>todo list</title>
+    <title>TODO LIST</title>
+    <script src="src/js/script.js" defer></script>
 </head>
 
 <body>
@@ -25,20 +26,19 @@
             </div>
         </div>
 
-        <div class="todo-container" tabindex="0">
+        <div class="todo-container" style="min-height: 400px;" tabindex="0">
             <!-- TODO's will be added here. -->
-            <div class="temp">
-                <span>
-                    😇 ADD YOUR TODO'S HERE 😇
-                </span>
+            <div class="temp" style=" width: 400px; min-height: 300px; display: flex;flex-direction: column;">
+                <div>
+                    <img src="src/img/empty-tasks-dark.svg" alt="No tasks" width="300px" height="300px">
+                </div>
+                <div style="text-align: center;">
+                    No tasks yet
+                </div>
             </div>
         </div>
 
-
-
     </div>
-    <!-- <script src="https://prabhjotsinghubhi.github.io/TO-DO-List/src/js/script.js"></script> -->
-    <script src="src/js/script.js"></script>
     </div>
 </body>
 

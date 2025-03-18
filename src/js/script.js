@@ -1,83 +1,112 @@
-document.addEventListener('DOMContentLoaded', function () {
-    // Selecting elements
-    const addBtn = document.querySelector('#Add');
-    const todo_container = document.querySelector('.todo-container');
-    const inputTask = document.querySelector('#task');
-    const temp = document.querySelector('.temp');
+// Selecting elements
+const addBtn = document.querySelector('#Add');
+const todo_container = document.querySelector('.todo-container');
+const inputTask = document.querySelector('#task');
+const temp = document.querySelector('.temp');
 
-    function checkPlaceholder() {
-        if (todo_container.children.length > 1) {
-            temp.remove();
-        } 
+// Check placeholder visibility
+function checkPlaceholder() {
+    temp.style.display = todo_container.children.length > 1 ? "none" : "block";
+}
+
+// Load tasks from localStorage on page load
+function loadTasks() {
+    const savedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    savedTasks.forEach(task => {
+        addTask(task.text, task.completed);
+    });
+}
+window.onload = loadTasks;
+
+// Save tasks to localStorage
+function saveTasks() {
+    const tasks = [];
+    document.querySelectorAll('.todo-txt-container span').forEach(task => {
+        const taskItem = task.parentElement.parentElement;
+        tasks.push({ text: task.textContent, completed: taskItem.querySelector('.checkboxes').checked });
+    });
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+// Function to add a task
+function addTask(taskText = inputTask.value.trim(), isCompleted = false) {
+    if (inputTask.value === '') {
+        alert('Please enter a task');
+        return;
     }
 
-    function addTask() {
-        const task = inputTask.value.trim();
+    // Prevent duplicate tasks
+    if ([...document.querySelectorAll('.todo-txt-container span')].some(t => t.textContent === taskText)) {
+        alert('Task already exists!');
+        return;
+    }
 
-        if (task === '') {
-            alert('Please enter a task');
-            return;
-        }
+    // Creating a new task item
+    let taskItem = document.createElement('div');
+    taskItem.classList.add('main-align');
 
-        // Creating a new task item
-        let taskItem = document.createElement('div');
-        taskItem.classList.add('main-align');
+    // Checkbox container
+    let checkboxContainer = document.createElement('div');
+    checkboxContainer.classList.add('checkbox-container');
 
-        // Checkbox container
-        let checkboxContainer = document.createElement('div');
-        checkboxContainer.classList.add('checkbox-container');
+    let checkBox = document.createElement('input');
+    checkBox.type = "checkbox";
+    checkBox.classList.add('checkboxes');
+    checkBox.checked = isCompleted;
 
-        let checkBox = document.createElement('input');
-        checkBox.type = "checkbox";
-        checkBox.classList.add('checkboxes');
+    // Task text container
+    let taskTxtContainer = document.createElement('div');
+    taskTxtContainer.classList.add('todo-txt-container');
 
-        checkBox.addEventListener('click', function () {
-            taskSpan.style.color = checkBox.checked ? "gray" : "#000";
-            taskSpan.style.textDecoration = checkBox.checked ? "line-through" : "none";
-        });
+    let taskSpan = document.createElement('span');
+    taskSpan.textContent = taskText;
+    taskSpan.style.color = isCompleted ? "gray" : "#000";
+    taskSpan.style.textDecoration = isCompleted ? "line-through" : "none";
 
-        checkboxContainer.appendChild(checkBox);
+    checkBox.addEventListener('click', function () {
+        taskSpan.style.color = checkBox.checked ? "gray" : "#000";
+        taskSpan.style.textDecoration = checkBox.checked ? "line-through" : "none";
+        saveTasks();
+    });
 
-        // Task text container
-        let taskTxtContainer = document.createElement('div');
-        taskTxtContainer.classList.add('todo-txt-container');
+    checkboxContainer.appendChild(checkBox);
+    taskTxtContainer.appendChild(taskSpan);
 
-        let taskSpan = document.createElement('span');
-        taskSpan.textContent = task;
+    // Remove button
+    let removeBtn = document.createElement('div');
+    removeBtn.classList.add('remove-btn');
 
-        taskTxtContainer.appendChild(taskSpan);
+    let removeImg = document.createElement('img');
+    removeImg.src = './src/img/xmark-solid.svg'; // Ensure correct path
+    removeImg.id = 'remove-img';
 
-        // Remove button
-        let removeBtn = document.createElement('div');
-        removeBtn.classList.add('remove-btn');
+    removeBtn.appendChild(removeImg);
 
-        let removeImg = document.createElement('img');
-        removeImg.src = 'src/img/xmark-solid.svg';
-        removeImg.id = 'remove-img';
-
-        removeBtn.appendChild(removeImg);
-
-        removeBtn.addEventListener('click', function () {
+    removeBtn.addEventListener('click', function () {
+        taskItem.style.opacity = 0;
+        setTimeout(() => {
             taskItem.remove();
             checkPlaceholder();
-        });
-
-        taskItem.appendChild(checkboxContainer);
-        taskItem.appendChild(taskTxtContainer);
-        taskItem.appendChild(removeBtn);
-
-        todo_container.appendChild(taskItem);
-
-        inputTask.value = '';
-
-        // Check for placeholder removal
-        checkPlaceholder();
-    }
-
-    addBtn.addEventListener('click', addTask);
-    inputTask.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter') {
-            addTask();
-        }
+            saveTasks();
+        }, 300);
     });
+
+    taskItem.appendChild(checkboxContainer);
+    taskItem.appendChild(taskTxtContainer);
+    taskItem.appendChild(removeBtn);
+
+    todo_container.appendChild(taskItem);
+
+    inputTask.value = '';
+    checkPlaceholder();
+    saveTasks();
+}
+
+// Event listeners
+addBtn.addEventListener('click', addTask);
+
+inputTask.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+        addTask();
+    }
 });
