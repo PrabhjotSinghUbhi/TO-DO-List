@@ -16,15 +16,21 @@ function loadTasks() {
         addTask(task.text, task.completed);
     });
 }
+
+//! Calls when ever the system loads.
 window.onload = loadTasks;
 
-// Save tasks to localStorage
+//! Save tasks to localStorage
 function saveTasks() {
     const tasks = [];
     document.querySelectorAll('.todo-txt-container span').forEach(task => {
         const taskItem = task.parentElement.parentElement;
-        tasks.push({ text: task.textContent, completed: taskItem.querySelector('.checkboxes').checked });
+        tasks.push({
+            text: task.textContent,
+            completed: taskItem.querySelector('.checkboxes').checked
+        });
     });
+    
     localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
